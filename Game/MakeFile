@@ -1,0 +1,7 @@
+all: compile link
+
+compile:
+	g++ -Isrc -c src/**.cpp -c -ISFML/include -O3 -m64
+
+link:
+	g++ *.o -o main -LSFML/lib -o Junkies_Quest.exe -lsfml-graphics -lsfml-window -lsfml-system -lsfml-main

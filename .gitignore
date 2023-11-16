@@ -1,0 +1,16 @@
+.obj
+.ipch
+.tlog
+.dll
+.o
+.exe
+*.ipch
+*.log
+*.tlog
+*.obj
+*.pdb
+*.dll
+*.o
+*.exe
+Design/
+SFML/
