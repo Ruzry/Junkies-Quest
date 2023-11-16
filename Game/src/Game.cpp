@@ -27,17 +27,13 @@ void Game::init(sf::RenderWindow *window_, Input *input_)
 	input = input_;
 	window = window_;
 
+	player.init(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), sf::Vector2f(CELL_SIZE, CELL_SIZE));
+
 	blue.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
 	blue.setFillColor(sf::Color::Blue);
-	
-	black.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
-	black.setFillColor(sf::Color::Black);
 
 	yellow.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
 	yellow.setFillColor(sf::Color::Yellow);
-
-	cyan.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
-	cyan.setFillColor(sf::Color::Cyan);
 
 	view.setCenter(sf::Vector2f(350.f, 300.f));
 	view.setSize(sf::Vector2f(430.f, 400.f));
@@ -52,7 +48,6 @@ void Game::update(float deltaTime_)
 {
 	deltaTime = deltaTime_;
 
-
 	if (input->isKeyDown(sf::Keyboard::R))
 	{
 		window->setView(window->getDefaultView());
@@ -62,15 +57,15 @@ void Game::update(float deltaTime_)
 	{
 		input->setKeyUp(sf::Keyboard::W);
 
-		if (displayView)
-		{
-			displayView = false;
-			window->setView(window->getDefaultView());
-		}
-		else
-		{
-			displayView = true;
-		}
+		// if (displayView)
+		// {
+		// 	displayView = false;
+		// 	window->setView(window->getDefaultView());
+		// }
+		// else
+		// {
+		// 	displayView = true;
+		// }
 	}
 
 	if (input->isKeyDown(sf::Keyboard::C))
@@ -90,7 +85,8 @@ void Game::update(float deltaTime_)
 	else
 		changeY = 0.f;
 
-	view.setCenter(0, 0);
+	player.input(input, changeX, changeY);
+	view.setCenter(player.getPosition().x, player.getPosition().y);
 }
 
 /**
@@ -101,12 +97,8 @@ void Game::render()
 	int multi = 0;
 
 	drawGrid(true);
-	
-	if (displayView == true)
-		window->setView(view);
-
-	//window->draw(player);
-
+	player.render(window);
+	window->setView(view);
 }
 
 void Game::drawGrid(bool render)
@@ -117,12 +109,12 @@ void Game::drawGrid(bool render)
 		{
 			sf::Vertex horizontalLine[] = {{{(i * CELL_SIZE), 0}, sf::Color::Cyan}, {{(i * CELL_SIZE), WINDOW_HEIGHT}, sf::Color::Cyan}};
 			window->draw(horizontalLine, 2, sf::Lines);
+		}
 
-			for (int j = 0; j < ROWS; j++) 
-			{
-				sf::Vertex verticalLine[] = {{{0, (j * CELL_SIZE)}, sf::Color::Cyan}, {{WINDOW_WIDTH, (j * CELL_SIZE)}, sf::Color::Cyan}};
-				window->draw(verticalLine, 2, sf::Lines);
-			}
+		for (int j = 0; j < ROWS + 1; j++) 
+		{
+			sf::Vertex verticalLine[] = {{{0, (j * CELL_SIZE)}, sf::Color::Cyan}, {{WINDOW_WIDTH, (j * CELL_SIZE)}, sf::Color::Cyan}};
+			window->draw(verticalLine, 2, sf::Lines);
 		}
 	}
 }

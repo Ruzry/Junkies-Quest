@@ -1,8 +1,18 @@
 #include "Character.h"
+#include <iostream>
 
 Character::Character()
 {
 
+}
+
+/**
+	The init function for Characters, override for specific functionality
+	@param float for deltaTime for in frame calculations.
+*/
+void Character::init()
+{
+ 
 }
 
 /**
@@ -18,9 +28,9 @@ void Character::update(float deltaTime)
 	The render function for Characters, call to render characters and override for specific functionality
 	@param float for deltaTime for in frame calculations.
 */
-void Character::render()
+void Character::render(sf::RenderWindow *window)
 {
-    
+    window->draw(sprite);
 }
 
 /**

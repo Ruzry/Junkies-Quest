@@ -19,16 +19,14 @@ private:
 	sf::Vector2i getGridPosition(sf::Vector2f playerPosition);
 	void drawGrid(bool render);
 
-	//PlayerCharacter player;
+	PlayerCharacter player;
 
 	Input *input;
 	sf::RenderWindow *window;
 	float deltaTime;
 
 	sf::RectangleShape blue;
-	sf::RectangleShape black;
 	sf::RectangleShape yellow;
-	sf::RectangleShape cyan;
 
 	bool displayView;
 	sf::View view;

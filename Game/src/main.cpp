@@ -5,7 +5,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "Input/Input.h"
+#include "Characters/PlayerCharacter.h"
 #include "Game.h"
+#include <iostream>
 
 const int WINDOW_WIDTH = 960, WINDOW_HEIGHT = 800;
 
@@ -47,6 +49,7 @@ int main()
 			case sf::Event::KeyPressed:
 				// update input class
 				input.setKeyDown(event.key.code);
+				std::cout << "hit";
 				break;
 			case sf::Event::KeyReleased:
 				//update input class
@@ -82,6 +85,8 @@ int main()
 			input.setKeyUp(sf::Keyboard::Escape);
 			window.close();
 		}
+
+		junkiesQuest.update(deltaTime);
 
 		window.clear();
 		junkiesQuest.render();
