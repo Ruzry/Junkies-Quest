@@ -49,24 +49,11 @@ void Game::update(float deltaTime_)
 	deltaTime = deltaTime_;
 
 	if (input->isKeyDown(sf::Keyboard::R))
-	{
 		window->setView(window->getDefaultView());
-	}
 
 	if (input->isKeyDown(sf::Keyboard::W))
-	{
 		input->setKeyUp(sf::Keyboard::W);
-
-		// if (displayView)
-		// {
-		// 	displayView = false;
-		// 	window->setView(window->getDefaultView());
-		// }
-		// else
-		// {
-		// 	displayView = true;
-		// }
-	}
+	
 
 	if (input->isKeyDown(sf::Keyboard::C))
 		input->setKeyUp(sf::Keyboard::C);

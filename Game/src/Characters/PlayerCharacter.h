@@ -14,7 +14,6 @@ public:
     void init(sf::Vector2f position, sf::Vector2f size);
     void input(Input *input_, float changeInX, float changeInY);
 
-
 private:
 
 };
